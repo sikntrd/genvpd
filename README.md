@@ -12,7 +12,7 @@ How to use:
 4. fill out the form<br/>
 <br/>
 This is valid for HP, but can be used with Acer,Asus and Dell variants<br/>
-If you noticed any differences or find any faults, leave me a message at sikntrd@grr.la<br/>
+If you noticed any differences or find any faults, leave me a message at sikntrd@yopmail.com<br/>
 <br/>
 <br/>
 <table style="width:100%">
