@@ -8,7 +8,7 @@ How to use:
 1. save script as genvpd
 2. chmod +x genvpd
 3. ./genvpd <output.file>
-4. fill out the form
+4. fill out the form<br/>
 
 <table style="width:100%">
 <tr><td>ethernet_mac</td><td>00:01:02:03:04:05</td></tr>
