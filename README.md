@@ -10,6 +10,7 @@ How to use:
 3. ./genvpd <output.file>
 4. fill out the form<br/>
 
+
 <table style="width:100%">
 <tr><td>ethernet_mac</td><td>00:01:02:03:04:05</td></tr>
 <tr><td>mlb_serial_number</td><td>123456789ABCDE</td></tr>
@@ -21,16 +22,18 @@ How to use:
 <tr><td>serial_number</td><td>see product sticker,serial: 123456789A</td></tr>
 <tr><td>sku_number</td><td>see product sticker,product: 1234567-89A</td></tr>
 </table>
-
+<br/>
 This is valid for HP, but can be used with Acer,Asus and Dell variants<br/>
 If you noticed any differences or find any faults, leave me a message at sikntrd@grr.la<br/>
-
+<br/>
 You could also help me with supplying information:<br/>
-*Length of all the above variables so i can build in some checks.<br/>
-*MAC Addresses:<br/>
+<br/>
+1) Length of all the above variables so i can build in some checks.<br/>
+2) MAC Addresses:<br/>
 Acer: xx:xx:xx:xx:xx:xx<br/>
 Asus: xx:xx:xx:xx:xx:xx<br/>
 Dell: xx:xx:xx:xx:xx:xx<br/>
 HP  : 8C:DC:D4:xx:xx:xx<br/>
-
-With my information i was able to build a 100% genuine vpd.bin file. (verified with my backup)<br/>
+<br/>
+With my information i was able to build a 100% genuine vpd.bin file.<br/>
+(verified with my backup)<br/>
