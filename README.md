@@ -1,3 +1,5 @@
+GenVPD - a vpd file generator
+
 genvpd v0.1 - Initial release
 ================================================================
 Generates VPD 2.0 files to use with coreboot for Chromebox/books
