@@ -1,6 +1,7 @@
 GenVPD - Generates VPD 2.0 files for Chromeboxes/books to use with coreboot
-This is for people who lost their original or never backed up.
 ===========================================================================
+This is for people who lost their original or never backed up.
+
 
 History
 *genvpd v0.1 - Initial release
@@ -33,4 +34,4 @@ Dell: xx:xx:xx:xx:xx:xx
 HP  : 8C:DC:D4:xx:xx:xx
 
 With my information i was able to build a 100% genuine vpd.bin file. (verified with my backup)
-===========================================================================
+
