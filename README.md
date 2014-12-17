@@ -7,7 +7,7 @@ How to use:
 
 1. save script as genvpd
 2. chmod +x genvpd
-3. ./genvpd <output.file>
+3. ./genvpd [output.file]   eg: ./genvpd vpd.bin
 4. fill out the form<br/>
 <br/>
 This is valid for HP, but can be used with Acer,Asus and Dell variants<br/>
