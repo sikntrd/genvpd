@@ -1,0 +1,64 @@
+#!/bin/bash
+printf "Chromebox/book VPD20 generator v0.1a (c) GPLv2 by sikntrd\n\n"
+[ -z "$1" ] && printf "Usage: $0 <outputfile>\n\n" && exit 1
+file=$1
+
+head=\
+"\x5f\x53\x4d\x5f\x7b\x1f\x02\x06\x00\x00\x00\x00\x00\x00\x00\x00\
+\x5f\x44\x4d\x49\x5f\x3e\x82\x00\x1f\x00\x60\x00\x03\x00\x26\xf1\
+\x28\x00\x00\x01\x00\x01\x02\x02\x00\x03\x00\x00\x00\x00\x00\x75\
+\xf4\x92\x6b\x9e\x43\x4b\x32\x89\x79\xeb\x20\xc0\xed\xa7\x6a\x00\
+\x04\x60\x00\x00\x01\x00\x00\x47\x6f\x6f\x67\x6c\x65\x00\x47\x6f\
+\x6f\x67\x6c\x65\x20\x53\x50\x44\x00\x00\x00\xf1\x28\x01\x00\x01\
+\x00\x01\x02\x02\x00\x03\x00\x00\x00\x00\x00\x0a\x7c\x23\xd3\x8a\
+\x27\x42\x52\x99\xbf\x78\x68\xa2\xe2\x6b\x61\x00\x06\x60\x00\xe9\
+\x00\x00\x00\x47\x6f\x6f\x67\x6c\x65\x00\x47\x6f\x6f\x67\x6c\x65\
+\x20\x56\x50\x44\x20\x32\x2e\x30\x00\x00\x00\x7f\x04\x02\x00\x00\
+\x00"
+
+while :;do
+  read -e -p "ethernet_mac      : " ethernet_mac
+  [[ $ethernet_mac =~ ^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$ ]] && break
+done
+
+read -e -p "mlb_serial_number : " mlb_serial_number
+read -e -p "initial_locale    : " initial_locale
+read -e -p "initial_timezone  : " initial_timezone
+read -e -p "keyboard_layout   : " keyboard_layout
+read -e -p "model_name        : " model_name
+read -e -p "region            : " region
+read -e -p "serial_number     : " serial_number
+read -e -p "sku_number        : " sku_number
+
+fill(){ for ((i=0;i<$2;i++)) do printf "\xff" >>$1;done;}
+num2bin(){ c=$(printf '\\\\x'"%02x" $1);printf "$c";}
+printf "\nWriting HEAD...\n"
+printf $head>$file
+printf "Writing FF...\n"
+fill $file $((0x00000600))-$(stat -c%s $file)
+
+__ethernet_mac=${!ethernet_mac@}
+__mlb_serial_number=${!mlb_serial_number@}
+__initial_locale=${!initial_locale@}
+__initial_timezone=${!initial_timezone@}
+__keyboard_layout=${!keyboard_layout@}
+__model_name=${!model_name@}
+__region=${!region@}
+__serial_number=${!serial_number@}
+__sku_number=${!sku_number@}
+
+printf "Writing DATA...\n"
+printf "\x01$(num2bin ${#__ethernet_mac})$__ethernet_mac$(num2bin ${#ethernet_mac})$ethernet_mac">>$file 
+printf "\x01$(num2bin ${#__mlb_serial_number})$__mlb_serial_number$(num2bin ${#mlb_serial_number})$mlb_serial_number">>$file
+printf "\x01$(num2bin ${#__initial_locale})$__initial_locale$(num2bin ${#initial_locale})$initial_locale">>$file
+printf "\x01$(num2bin ${#__initial_timezone})$__initial_timezone$(num2bin ${#initial_timezone})$initial_timezone">>$file
+printf "\x01$(num2bin ${#__keyboard_layout})$__keyboard_layout$(num2bin ${#keyboard_layout})$keyboard_layout">>$file
+printf "\x01$(num2bin ${#__model_name})$__model_name$(num2bin ${#model_name})$model_name">>$file
+printf "\x01$(num2bin ${#__region})$__region$(num2bin ${#region})$region">>$file
+printf "\x01$(num2bin ${#__serial_number})$__serial_number$(num2bin ${#serial_number})$serial_number">>$file
+printf "\x01$(num2bin ${#__sku_number})$__sku_number$(num2bin ${#sku_number})$sku_number">>$file
+printf "\x00">>$file
+printf "Writing FF...\n"
+fill $file $((0x00004000))-$(stat -c%s $file)
+printf "\nDone!\n\n"
+exit 0
