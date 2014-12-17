@@ -5,7 +5,7 @@ History<br/>
 *genvpd v0.1 - Initial release<br/><br/>
 How to use:
 
-1. save script as genvpd
+1. save bash script as genvpd (linux)
 2. chmod +x genvpd
 3. ./genvpd [output.file]<br/>
 ./genvpd vpd.bin<br/>
